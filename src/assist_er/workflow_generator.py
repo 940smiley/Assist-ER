@@ -31,7 +31,10 @@ class WorkflowGenerator:
                             "uses": "actions/setup-python@v5",
                             "with": {"python-version": "3.11"},
                         },
-                        {"name": "Install dependencies", "run": "pip install -e .[dev]"},
+                        {
+                            "name": "Install dependencies",
+                            "run": "python -m pip install --upgrade pip && python -m pip install -e .[dev]",
+                        },
                     ],
                 }
             },
@@ -39,7 +42,7 @@ class WorkflowGenerator:
 
         steps: list[dict[str, Any]] = workflow["jobs"]["quality"]["steps"]
         if request.run_lint:
-            steps.append({"name": "Lint", "run": "ruff check src tests"})
+            steps.append({"name": "Lint", "run": "python -m ruff check src tests"})
         if request.run_tests:
             steps.append({"name": "Tests", "run": "pytest"})
         if request.auto_merge_dependabot:
