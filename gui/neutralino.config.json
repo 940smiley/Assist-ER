@@ -1,0 +1,28 @@
+{
+  "$schema": "https://neutralino.js.org/schemas/neutralino.config.schema.json",
+  "applicationId": "com.assister.pro",
+  "defaultMode": "window",
+  "port": 0,
+  "url": "/src/index.html",
+  "enableServer": true,
+  "enableNativeAPI": true,
+  "nativeBlockList": [],
+  "globalVariables": {
+    "APP_NAME": "Assist-ER Pro"
+  },
+  "modes": {
+    "window": {
+      "title": "Assist-ER Pro",
+      "width": 1280,
+      "height": 820,
+      "minWidth": 1024,
+      "minHeight": 720,
+      "alwaysOnTop": false,
+      "enableInspector": true
+    }
+  },
+  "cli": {
+    "binaryName": "assist-er-pro-gui",
+    "resourcesPath": "./"
+  }
+}

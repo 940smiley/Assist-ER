@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+         IgnorableNamespaces="uap">
+  <Identity Name="AssistER.Pro" Publisher="CN=AssistER" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>Assist-ER Pro</DisplayName>
+    <PublisherDisplayName>Assist-ER</PublisherDisplayName>
+    <Logo>icon-placeholder.txt</Logo>
+  </Properties>
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22631.0"/>
+  </Dependencies>
+  <Applications>
+    <Application Id="AssistERPro" Executable="assist-er-pro-gui.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="Assist-ER Pro" Description="Assist-ER Pro Desktop" Square150x150Logo="icon-placeholder.txt" Square44x44Logo="icon-placeholder.txt" BackgroundColor="transparent" />
+    </Application>
+  </Applications>
+</Package>

@@ -1,0 +1,1 @@
+Replace with signed production .ico asset during release.
