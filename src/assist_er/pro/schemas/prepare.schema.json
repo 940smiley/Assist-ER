@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PrepareResult",
+  "type": "object",
+  "required": ["repo", "triage", "workflow_audit", "dependency_update", "notes"],
+  "properties": {
+    "repo": {"type": "string"},
+    "triage": {"type": "object"},
+    "workflow_audit": {"type": "object"},
+    "dependency_update": {"type": "object"},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}
