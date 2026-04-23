@@ -14,6 +14,7 @@ from assist_er.pro.core.repos.pr_manager import PullRequestManager
 from assist_er.pro.core.repos.repository_manager import RepositoryManager
 from assist_er.pro.core.repos.triage_engine import RepoTriageEngine
 from assist_er.pro.core.repos.workflow_manager import WorkflowManager
+from assist_er.pro.core.utils.maintenance_engine import AutonomousMaintenanceEngine
 from assist_er.pro.plugins.custom_automation import CustomAutomation
 from assist_er.pro.plugins.dependabot_helper import DependabotHelper
 from assist_er.pro.plugins.pages_helper import PagesHelper
@@ -42,6 +43,7 @@ class ProService:
         self.deps = DependabotHelper(self.rest)
         self.pages = PagesHelper(self.rest)
         self.automation = CustomAutomation(self.triage, self.workflows, self.deps, self.prs)
+        self.maintenance = AutonomousMaintenanceEngine(self)
         self.ai_codegen = CodeGenerator()
         self.ai_reviewer = PRReviewer()
 

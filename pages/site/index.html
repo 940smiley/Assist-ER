@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Assist-ER Demo</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Assist-ER</h1>
+    <p>Budget + Pro GitHub maintenance platform</p>
+  </header>
+  <section>
+    <h2>Features</h2>
+    <ul>
+      <li>Budget CLI for lightweight automation</li>
+      <li>Pro GUI with dashboards and live logs</li>
+      <li>Autonomous maintenance engine (`assist-er --pro work`)</li>
+      <li>Workflow repair, dependency updates, and PR processing</li>
+    </ul>
+  </section>
+  <section>
+    <h2>CLI Examples</h2>
+    <pre>assist-er --budget repos
+assist-er --pro work
+assist-er --pro repos workflows owner repo --fix</pre>
+  </section>
+  <section>
+    <h2>Install</h2>
+    <pre>pip install -e .[dev]
+assist-er --help</pre>
+  </section>
+  <section>
+    <h2>Architecture</h2>
+    <p>core/auth, core/api, core/repos, core/prs, core/branches, core/workflows, core/ai, core/utils, plugins, gui, pages, build.</p>
+  </section>
+</body>
+</html>

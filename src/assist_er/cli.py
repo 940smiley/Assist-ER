@@ -9,6 +9,7 @@ from rich.console import Console
 from assist_er.github_client import GitHubClient
 from assist_er.logging_utils import configure_logging
 from assist_er.models import BatchEditRequest, RepositoryAccess, WorkflowRequest
+from assist_er.pro.core.utils.gui_bridge import launch_gui
 from assist_er.pro.models import RepoRef
 from assist_er.pro.service import ProService
 from assist_er.services import AutomationService
@@ -65,6 +66,14 @@ def main(
     state.pro_mode = pro and not budget
 
 
+@app.command("work")
+def work() -> None:
+    """Run autonomous repo maintenance across all accessible repositories (pro mode)."""
+    service = _pro_service()
+    summary = service.maintenance.run_all()
+    console.print_json(json.dumps(summary))
+
+
 # Backward-compatible budget commands.
 @app.command("triage")
 def triage(owner: str, repo: str) -> None:
@@ -99,9 +108,8 @@ def repos_root(ctx: typer.Context) -> None:
     if ctx.invoked_subcommand:
         return
     if state.pro_mode:
-        service = _pro_service()
-        pro_repos = service.repos.list_accessible_repositories()
-        console.print_json(json.dumps([r.model_dump() for r in pro_repos]))
+        gui_path = launch_gui()
+        console.print(f"Assist-ER Pro GUI launched: {gui_path}")
         return
 
     with GitHubClient() as github:

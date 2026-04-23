@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Assist-ER Pro</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Assist-ER Pro</h1>
+      <p>Autonomous GitHub maintenance control center</p>
+    </header>
+
+    <main class="grid">
+      <section id="auth" class="card">
+        <h2>Authentication</h2>
+        <input id="token" placeholder="GitHub token" />
+        <button id="saveToken">Save Token</button>
+      </section>
+
+      <section id="repos" class="card">
+        <h2>Repo Browser</h2>
+        <button data-action="scan">Scan All Repos</button>
+        <button data-action="cycle">Run Full Maintenance Cycle</button>
+        <pre id="repoOutput"></pre>
+      </section>
+
+      <section id="prs" class="card">
+        <h2>PR Dashboard</h2>
+        <button data-action="fix">Fix PRs</button>
+        <button data-action="merge">Merge Safe PRs</button>
+        <button data-action="close">Close Stale PRs</button>
+      </section>
+
+      <section id="workflows" class="card">
+        <h2>Workflow Dashboard</h2>
+        <button data-action="audit">Audit Workflows</button>
+        <button data-action="repair">Repair Workflows</button>
+        <button data-action="deps">Update Dependencies</button>
+      </section>
+
+      <section id="branches" class="card">
+        <h2>Branch Operations</h2>
+        <button data-action="clean">Clean Merged Branches</button>
+      </section>
+
+      <section id="settings" class="card">
+        <h2>Settings</h2>
+        <label><input type="checkbox" id="automerge" checked /> Auto-merge safe PRs</label>
+        <label><input type="checkbox" id="autofix" checked /> Auto-fix workflow/dependency issues</label>
+      </section>
+
+      <section id="logs" class="card full">
+        <h2>Logs Panel</h2>
+        <button id="refreshLogs">Refresh Logs</button>
+        <pre id="logOutput"></pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
