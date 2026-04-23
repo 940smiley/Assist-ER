@@ -6,9 +6,10 @@ from assist_er.config import settings
 from assist_er.github_client import GitHubAPIError, GitHubClient
 from assist_er.logging_utils import configure_logging
 from assist_er.models import BatchEditRequest, OperationResult, RepositoryAccess, WorkflowRequest
+from assist_er.pro.service import ProService
 from assist_er.services import AutomationService
 
-app = FastAPI(title="Assist-ER API", version="1.0.0")
+app = FastAPI(title="Assist-ER API", version="2.0.0")
 
 
 def get_service() -> AutomationService:
@@ -16,7 +17,12 @@ def get_service() -> AutomationService:
     return AutomationService(github=github)
 
 
+def get_pro_service() -> ProService:
+    return ProService()
+
+
 service_dependency = Depends(get_service)
+pro_service_dependency = Depends(get_pro_service)
 
 
 @app.get("/health")
@@ -62,6 +68,24 @@ def batch_edits(
     service: AutomationService = service_dependency,
 ) -> OperationResult:
     return service.apply_batch_edits(request)
+
+
+@app.get("/pro/repos")
+def pro_repos(service: ProService = pro_service_dependency) -> list[dict[str, str]]:
+    return [repo.model_dump() for repo in service.repos.list_accessible_repositories()]
+
+
+@app.post("/pro/repos/{owner}/{repo}/prepare")
+def pro_prepare(
+    owner: str,
+    repo: str,
+    service: ProService = pro_service_dependency,
+) -> dict[str, object]:
+    selected = service.repos.select_repositories([f"{owner}/{repo}"])
+    if not selected:
+        raise HTTPException(status_code=404, detail="Repository not accessible")
+    result = service.automation.prepare(selected[0])
+    return result.model_dump()
 
 
 def run() -> None:

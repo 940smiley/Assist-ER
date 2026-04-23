@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RepoTriageResult",
+  "type": "object",
+  "required": ["repo", "open_issues", "open_prs", "severity_score", "findings"],
+  "properties": {
+    "repo": {"type": "string"},
+    "open_issues": {"type": "integer", "minimum": 0},
+    "open_prs": {"type": "integer", "minimum": 0},
+    "severity_score": {"type": "integer", "minimum": 0},
+    "findings": {"type": "array", "items": {"type": "string"}}
+  }
+}

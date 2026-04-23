@@ -15,6 +15,14 @@ class Settings(BaseSettings):
     )
     log_level: str = Field(default="INFO", alias="ASSIST_ER_LOG_LEVEL")
     request_timeout_seconds: float = Field(default=20.0, alias="ASSIST_ER_REQUEST_TIMEOUT")
+    pro_token_key_path: Path = Field(
+        default=Path(".assist-er/pro/key.bin"),
+        alias="ASSIST_ER_PRO_KEY_PATH",
+    )
+    pro_token_store_path: Path = Field(
+        default=Path(".assist-er/pro/tokens.enc"),
+        alias="ASSIST_ER_PRO_TOKEN_STORE_PATH",
+    )
 
     model_config = SettingsConfigDict(
         env_file=".env",
