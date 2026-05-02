@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 from pydantic import BaseModel, Field
 
 
-class AuthMode(str, Enum):
+class AuthMode(StrEnum):
     github_app = "github_app"
     oauth_device = "oauth_device"
     pat = "pat"
@@ -31,7 +31,7 @@ class RepoTriageResult(BaseModel):
     findings: list[str] = Field(default_factory=list)
 
 
-class PullRequestState(str, Enum):
+class PullRequestState(StrEnum):
     open = "open"
     closed = "closed"
     merged = "merged"

@@ -1,10 +1,10 @@
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 from pydantic import BaseModel, Field
 
 
-class ControlMode(str, Enum):
+class ControlMode(StrEnum):
     full = "full"
     limited = "limited"
 
@@ -39,7 +39,7 @@ class Issue(BaseModel):
     html_url: str
 
 
-class TriageSeverity(str, Enum):
+class TriageSeverity(StrEnum):
     critical = "critical"
     high = "high"
     medium = "medium"
